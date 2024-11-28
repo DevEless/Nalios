@@ -1,4 +1,4 @@
-def gameoflife(matrix, iteration=5):
+def gameoflife(matrix, iterations=5):
 
 
     def voisin(x,y, rows,cols):
@@ -39,3 +39,31 @@ def gameoflife(matrix, iteration=5):
                         new_matrix[x][y] = 1 #nait
             return new_matrix
         
+        for _ in range(iterations):
+            matrix = nextstep(matrix)
+
+        html = '<table border="1" style="border-collapse: collapse; text-align: center;">\n'
+        for row in matrix:
+            html += "<tr>\n"
+            for cell in row:
+                color = "black" if cell == 1 else "white"
+                html += f'<td style="width: 20px; height: 20px; background-color: {color};"></td>\n'
+            html += "</tr>\n"
+        html += "</table>\n"
+
+
+#exemple de matrix
+
+initial_matrix =[
+    [0, 1, 0],
+    [0, 1, 0],
+    [0, 1, 0]
+]
+
+html_result = gameoflife(initial_matrix, iterations=5)
+
+# Écrire dans un fichier HTML
+with open("resultat.html", "w") as file:
+    file.write(html_result)
+
+print("Le fichier HTML a été généré : game_of_life.html")
