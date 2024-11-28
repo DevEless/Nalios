@@ -41,3 +41,20 @@ FizzOrBuzz()
 
 #Bonus
 
+def FizzOrBuzzBonus(start=1, end=100, rules=None):
+
+    if rules is None:
+        #si aucune regles n'est spécifié utiliser les regles par défaut
+        rules={"3":"Fizz","5": "Buzz", "15": "FizzBuzz"}
+        #def les regles par défauts
+    for num in range(start, end + 1):
+        #parcours tous les nombres start et end inclus
+        output = ""
+        #initialise un string vide pour stocker les mots associés
+        for multiple, word in rules.items():
+            #boucle pour parcourir chaque multiple et chaque mot dans le dictionnaire rules
+            if num % int(multiple) == 0:
+                #vérifie si le nombre est divisible par le multiple , la methode int le transforme en entier
+                output += word
+                #si le nombre est un multiple le mot correspondant est ajouter a la chaine output
+        print(output if output else num)
