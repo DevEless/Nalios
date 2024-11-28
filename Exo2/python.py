@@ -6,7 +6,7 @@ def gameoflife(matrix, iterations=5):
         directions = [
             #définition des directions possible
             (-1,-1), (-1,0),(-1,1),
-            (0,-1),         (0,1)
+            (0,-1),         (0,1),
             (1,-1),   (1,0),  (1,1)
             ]
         voisin = 0
@@ -32,26 +32,26 @@ def gameoflife(matrix, iterations=5):
                         #verifie si il y a une sous ou une sur population
                         new_matrix[x][y] = 0 #rénitialise a 0 donc il meurt
                     else:
-                        new_matrix[x][y] = 0 #reste en vie
+                        new_matrix[x][y] = 1 #reste en vie
                 else:
                     #si la cellule a 3 voisins en vie elle en crée une nouvelle par reproduction
                     if voisin_vivants == 3:
                         new_matrix[x][y] = 1 #nait
-            return new_matrix
+        return new_matrix
         
-        for _ in range(iterations):
-            matrix = nextstep(matrix)
+    for _ in range(iterations):
+        matrix = nextstep(matrix)
 
-        html = '<table border="1" style="border-collapse: collapse; text-align: center;">\n'
-        for row in matrix:
-            html += "<tr>\n"
-            for cell in row:
-                color = "black" if cell == 1 else "white"
-                html += f'<td style="width: 20px; height: 20px; background-color: {color};"></td>\n'
-            html += "</tr>\n"
-        html += "</table>\n"
+    html = '<table border="1" style="border-collapse: collapse; text-align: center;">\n'
+    for row in matrix:
+        html += "<tr>\n"
+        for cell in row:
+            color = "black" if cell == 1 else "white"
+            html += f'<td style="width: 20px; height: 20px; background-color: {color};"></td>\n'
+        html += "</tr>\n"
+    html += "</table>\n"
 
-
+    return html
 #exemple de matrix
 
 initial_matrix =[
@@ -62,8 +62,8 @@ initial_matrix =[
 
 html_result = gameoflife(initial_matrix, iterations=5)
 
-# Écrire dans un fichier HTML
+# Écrire dans un fichier HTML dans le dossier
 with open("resultat.html", "w") as file:
     file.write(html_result)
 
-print("Le fichier HTML a été généré : game_of_life.html")
+print("Le fichier HTML a été généré : resultat.html")
